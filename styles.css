@@ -323,6 +323,7 @@ button {
   list-style: none;
   display: grid;
   gap: 8px;
+  align-content: start;
   margin: 0;
   padding: 0;
 }
