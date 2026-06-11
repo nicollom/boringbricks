@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f5f4ef">
+    <meta name="apple-mobile-web-app-title" content="Daily List">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    <title>Daily List</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <section class="date-panel" aria-label="Current day">
+          <p class="eyebrow">Daily List</p>
+          <h1 id="dayTitle">Today</h1>
+          <p id="dateLabel" class="date-label"></p>
+        </section>
+
+        <section class="day-controls" aria-label="Change day">
+          <button class="icon-button" id="prevDay" type="button" aria-label="Previous day" title="Previous day">‹</button>
+          <input id="datePicker" type="date" aria-label="Selected date">
+          <button class="icon-button" id="nextDay" type="button" aria-label="Next day" title="Next day">›</button>
+          <button class="text-button" id="todayButton" type="button">Today</button>
+        </section>
+      </header>
+
+      <section class="summary-band" aria-label="Progress summary">
+        <div>
+          <span class="summary-value" id="doneCount">0</span>
+          <span class="summary-label">done</span>
+        </div>
+        <div>
+          <span class="summary-value" id="remainingCount">0</span>
+          <span class="summary-label">left</span>
+        </div>
+        <div class="progress-wrap" aria-label="Overall progress">
+          <div class="progress-track">
+            <span id="progressBar" class="progress-bar"></span>
+          </div>
+          <span id="progressLabel" class="progress-label">0%</span>
+        </div>
+      </section>
+
+      <section class="mobile-snapshot" aria-label="Today snapshot" hidden>
+        <article class="snapshot-progress">
+          <div class="snapshot-ring" id="snapshotRing">
+            <span id="snapshotPercent">0%</span>
+          </div>
+          <div>
+            <p class="eyebrow">Today</p>
+            <h2>Snapshot</h2>
+            <p id="snapshotMeta" class="snapshot-meta">0 done, 0 left</p>
+          </div>
+        </article>
+
+        <article class="snapshot-next">
+          <div>
+            <p class="eyebrow">Up next</p>
+            <h2>Next tasks</h2>
+          </div>
+          <ol id="snapshotNextList" class="snapshot-list" aria-label="Next tasks"></ol>
+          <p class="empty-state" id="snapshotEmpty">All clear for this day.</p>
+        </article>
+      </section>
+
+      <section class="task-layout">
+        <article class="task-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Every day</p>
+              <h2>Daily routine</h2>
+            </div>
+            <button class="icon-button" id="manageDaily" type="button" aria-label="Manage daily routine" title="Manage daily routine">⚙</button>
+          </div>
+
+          <form class="quick-add" id="dailyForm">
+            <input id="dailyInput" type="text" autocomplete="off" placeholder="Add a daily habit">
+            <button type="submit">Add</button>
+          </form>
+
+          <ul class="task-list" id="dailyList" aria-label="Daily routine tasks"></ul>
+          <p class="empty-state" id="dailyEmpty">Add habits that repeat every day.</p>
+        </article>
+
+        <article class="task-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Scheduled</p>
+              <h2>Today's tasks</h2>
+            </div>
+            <button class="icon-button" id="clearDone" type="button" aria-label="Clear completed one-off tasks" title="Clear completed tasks">✓</button>
+          </div>
+
+          <form class="quick-add scheduled-add" id="scheduledForm">
+            <input id="scheduledInput" type="text" autocomplete="off" placeholder="Add a task for this day">
+            <input id="scheduledTime" type="time" aria-label="Task time">
+            <button type="submit">Add</button>
+          </form>
+
+          <ul class="task-list" id="scheduledList" aria-label="Scheduled tasks"></ul>
+          <p class="empty-state" id="scheduledEmpty">Nothing scheduled for this day yet.</p>
+        </article>
+      </section>
+    </main>
+
+    <dialog id="dailyDialog">
+      <form method="dialog" class="dialog-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Routine setup</p>
+            <h2>Edit daily tasks</h2>
+          </div>
+          <button class="icon-button" value="close" aria-label="Close" title="Close">×</button>
+        </div>
+        <ul class="manage-list" id="manageList"></ul>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
